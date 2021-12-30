@@ -212,7 +212,9 @@
       onReset() {
         this.queryParams = {};
         this.searchForm = {
-          approved: ''
+          approved: '',
+          dateFrom: null,
+          dateTo: null
         };
         this.loadApplications();
       },

@@ -17,7 +17,7 @@
       </dl>
     </div>
     <div class="col-md-6 text-right">
-      <Avatar size="xl" avatar-style="rounded"/>
+      <Avatar :image="user.image" size="xl" avatar-style="rounded" />
     </div>
     <hr>
   </div>

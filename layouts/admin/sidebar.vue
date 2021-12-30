@@ -9,6 +9,9 @@
         <nuxt-link class="btn btn-block btn-light" v-bind:class="{active: isActiveMenu('admin/profile')}" to="/admin/profile">
           <i class="la la-user la-lg mr-2"></i> Profile
         </nuxt-link>
+        <nuxt-link class="btn btn-block btn-light" v-bind:class="{active: isActiveMenu('admin/users')}" to="/admin/users">
+          <i class="la la-user la-lg mr-2"></i> Users
+        </nuxt-link>
         <nuxt-link class="btn btn-block btn-light" v-bind:class="{active: isActiveMenu('admin/applications')}" to="/admin/applications">
           <i class="la la-file-alt la-lg mr-2"></i> Applications
         </nuxt-link>
