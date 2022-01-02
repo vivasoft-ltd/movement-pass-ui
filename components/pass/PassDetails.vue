@@ -3,7 +3,7 @@
     <UserDetails v-if="pass?.user" :user="pass.user" />
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-6">
         <dl class="row">
           <dt class="col-5">From</dt>
           <dd class="col-7">: {{pass.from}}</dd>
@@ -23,7 +23,7 @@
           </dd>
         </dl>
       </div>
-      <div class="col-md-6">
+      <div class="col-6">
         <dl class="row">
           <dt class="col-5">Destination</dt>
           <dd class="col-7">
@@ -48,10 +48,10 @@
 
 <script>
   import { MOVEMENT_TYPES, DATE_FORMAT } from '../../utils';
-  import Status from '../common/status';
-  import UserDetails from './userDetails';
-  import PassDestination from './passDestination';
-  import PassDuration from './passDuration';
+  import Status from '../common/Status';
+  import UserDetails from './UserDetails';
+  import PassDestination from './PassDestination';
+  import PassDuration from './PassDuration';
 
   export default {
     components: {

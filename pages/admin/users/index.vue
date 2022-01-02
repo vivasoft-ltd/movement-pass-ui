@@ -4,7 +4,8 @@
       <div class="card">
         <div class="card-header d-flex">
           <h3 class="card-title">
-            <i class="las la-users la-lg mr-1"></i> {{pageTitle}}
+            <Icon icon-name="user" />
+            {{pageTitle}}
           </h3>
         </div>
         <div class="card-body">
@@ -19,12 +20,7 @@
             </div>
             <div class="col-md-3">
               <label class="form-label">&nbsp;</label>
-              <button class="btn btn-info ml-auto" @click="onSearch">
-                <i class="la la-search mr-1"></i> Search
-              </button>
-              <button class="btn btn-warning ml-auto" @click="onReset">
-                <i class="la la-refresh mr-1"></i> Reset
-              </button>
+              <FilterActions @search="onSearch()" @reset="onReset()" />
             </div>
           </div>
         </div>
@@ -78,14 +74,16 @@
 </template>
 
 <script>
-  import Loader from '../../../components/common/loader';
+  import Loader from '../../../components/common/Loader';
   import { VueDatePicker } from '@mathieustan/vue-datepicker';
   import '@mathieustan/vue-datepicker/dist/vue-datepicker.min.css';
   import { DATE_FORMAT, CARD_TYPES } from '../../../utils';
-  import Pagination from '../../../components/common/pagination';
+  import Pagination from '../../../components/common/Pagination';
   import UserService from '../../../services/UserService';
-  import Avatar from '../../../components/common/avatar';
-  import UserStatus from '../../../components/common/userStatus';
+  import Avatar from '../../../components/common/Avatar';
+  import UserStatus from '../../../components/common/UserStatus';
+  import Icon from '../../../components/common/Icon';
+  import FilterActions from '../../../components/common/FilterActions';
 
   export default {
     middleware: 'authAdmin',
@@ -95,7 +93,9 @@
       Loader,
       Pagination,
       Avatar,
-      UserStatus
+      UserStatus,
+      Icon,
+      FilterActions
     },
     head() {
       return {

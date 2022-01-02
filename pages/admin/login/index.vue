@@ -15,14 +15,19 @@
 <script>
   import MessageHelper from '../../../helpers/MessageHelper';
   import { MESSAGE_TYPES } from '../../../utils';
-  import LoginForm from '../../../components/features/loginForm';
-  import Logo from '../../../components/common/logo';
+  import LoginForm from '../../../components/features/LoginForm';
+  import Logo from '../../../components/common/Logo';
 
   export default {
     layout: 'admin/login',
     components: {
       LoginForm,
       Logo
+    },
+    head() {
+      return {
+        title: 'Admin Login'
+      }
     },
     data() {
       return {

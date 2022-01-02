@@ -4,13 +4,13 @@
       <div class="card">
         <div class="card-header d-flex">
           <h3 class="card-title">
-            <i class="las la-plus-circle la-lg mr-1"></i> {{pageTitle}}
+            {{pageTitle}}
           </h3>
         </div>
         <div class="card-body">
           <form @submit.prevent="createPass()">
           <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Location From</label>
               <input class="form-control"
                      v-model="formData.from"
@@ -18,7 +18,7 @@
                      placeholder="Enter your location">
               <validation-error v-if="$v.formData.from.$error" :model-name="$v.formData.from" field-name="location from" />
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Where to go</label>
               <input class="form-control"
                      v-model="formData.destination"
@@ -26,11 +26,12 @@
                      placeholder="Enter your location">
               <validation-error v-if="$v.formData.destination.$error" :model-name="$v.formData.destination" field-name="location to" />
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Destination District</label>
               <v-select v-model="formData.district"
                         :options="districts"
                         @input="selectDistrict"
+                        class="form-select"
                         :class="{'is-invalid' : $v.formData.district.$error}"
                         label="name"
                         :clearable="false"
@@ -38,10 +39,11 @@
               </v-select>
               <validation-error v-if="$v.formData.district.$error" :model-name="$v.formData.district" field-name="district" />
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Destination Upazilla</label>
               <v-select v-model="formData.upazilla"
                         :options="upazillas"
+                        class="form-select"
                         :class="{'is-invalid' : $v.formData.upazilla.$error}"
                         label="name"
                         :clearable="false"
@@ -49,10 +51,10 @@
               </v-select>
               <validation-error v-if="$v.formData.upazilla.$error" :model-name="$v.formData.upazilla" field-name="upazilla" />
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Date for the pass</label>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 mb-3">
                   <div class="input-icon">
                     <VueDatePicker class="form-control"
                                    v-model="formData.startDate"
@@ -63,7 +65,7 @@
                                    no-header
                                    no-calendar-icon />
                     <span class="input-icon-addon">
-                      <i class="la la-calendar la-lg"></i>
+                      <Icon icon-name="calendar" />
                     </span>
                   </div>
                 </div>
@@ -85,7 +87,7 @@
                 <validation-error v-if="$v.formData.startTime.$error" :model-name="$v.formData.startTime" field-name="time" />
               </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Set a time limit to stay out</label>
               <select class="form-select"
                       v-model="formData.duration"
@@ -95,7 +97,7 @@
               </select>
               <validation-error v-if="$v.formData.duration.$error" :model-name="$v.formData.duration" field-name="duration" />
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Movement Type</label>
               <div class="mt-2">
                 <label v-for="(movementType, name) in movementTypes" class="form-check form-check-inline">
@@ -104,7 +106,7 @@
                 </label>
               </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <label class="form-label required">Reason for Movement</label>
               <select class="form-select"
                      v-model="formData.reason"
@@ -115,7 +117,7 @@
               </select>
               <validation-error v-if="$v.formData.reason.$error" :model-name="$v.formData.reason" field-name="reason" />
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 mb-3">
               <div class="mt-2">
                 <label class="form-label">
                   Do you want to drive out?
@@ -124,7 +126,7 @@
               </div>
             </div>
             <template v-if="formData.vehicleEnabled">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <div class="mt-2">
                   <label class="form-label">
                     Will you drive yourself?
@@ -132,7 +134,7 @@
                   </label>
                 </div>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Vehicle Number</label>
                 <input type="text" class="form-control"
                        v-model="formData.vehicleNumber"
@@ -141,7 +143,7 @@
                 <validation-error v-if="$v.formData.vehicleNumber.$error" :model-name="$v.formData.vehicleNumber" field-name="vehicle number" />
               </div>
               <template v-if="!formData.selfDrive">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 mb-3">
                   <label class="form-label required">Driver Name</label>
                   <input type="text" class="form-control"
                          v-model="formData.driverName"
@@ -149,7 +151,7 @@
                          placeholder="Enter driver name">
                   <validation-error v-if="$v.formData.driverName.$error" :model-name="$v.formData.driverName" field-name="driver name" />
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 mb-3">
                   <label class="form-label required">Driver Licence Number</label>
                   <input type="text" class="form-control"
                          v-model="formData.drivingLicence"
@@ -172,7 +174,8 @@
 </template>
 
 <script>
-  import ValidationError from '../../components/common/validationError';
+  import ValidationError from '../../components/common/ValidationError';
+  import Icon from '../../components/common/Icon';
   import { VueDatePicker } from '@mathieustan/vue-datepicker';
   import '@mathieustan/vue-datepicker/dist/vue-datepicker.min.css';
   import { DISTRICTS, UPAZILLAS } from '../../utils/locations';
@@ -188,6 +191,7 @@
   export default {
     layout: 'private',
     components: {
+      Icon,
       VueDatePicker,
       ValidationError
     },
@@ -204,7 +208,7 @@
         reasons: MOVEMENT_REASONS,
         times: START_TIMES,
         movementTypes: MOVEMENT_TYPES,
-        minimumDate: this.$moment(new Date).format('YYYY-MM-DD'),
+        minimumDate: this.$dayjs(new Date).format('YYYY-MM-DD'),
         isCreating: false,
         formData : {
           trip: DEFAULT_TRIP,

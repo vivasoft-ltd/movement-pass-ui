@@ -15,10 +15,10 @@
       </div>
       <div v-else class="ml-auto">
         <button class="btn btn-success" @click="approveOrReject(actionTypes.approve)">
-          <i class="la la-check-circle mr-1"></i> Approve
+          Approve
         </button>
         <button class="btn btn-danger" @click="approveOrReject(actionTypes.reject)">
-          <i class="la la-times-circle mr-1"></i> Reject
+          Reject
         </button>
       </div>
     </div>

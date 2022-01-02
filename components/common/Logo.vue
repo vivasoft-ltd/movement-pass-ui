@@ -1,5 +1,5 @@
 <template>
-  <img class="mt-3" src="~/static/login-page-image.png" :width="width" />
+  <img class="mt-3" src="~/static/banner.png" :width="width" />
 </template>
 
 <script>

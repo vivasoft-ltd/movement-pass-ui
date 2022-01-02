@@ -4,7 +4,8 @@
       <div class="card">
         <div class="card-header d-flex">
           <h3 class="card-title">
-            <i class="las la-file-alt la-lg mr-1"></i> {{pageTitle}}
+            <Icon icon-name="file" />
+            {{pageTitle}}
           </h3>
         </div>
         <div class="card-body">
@@ -18,8 +19,8 @@
                                placeholder="yyyy-mm-dd"
                                no-header
                                no-calendar-icon />
-                <span class="input-icon-addon">
-                    <i class="la la-calendar la-lg"></i>
+                  <span class="input-icon-addon">
+                    <Icon icon-name="calendar" />
                   </span>
               </div>
             </div>
@@ -32,8 +33,8 @@
                                placeholder="yyyy-mm-dd"
                                no-header
                                no-calendar-icon />
-                <span class="input-icon-addon">
-                    <i class="la la-calendar la-lg"></i>
+                  <span class="input-icon-addon">
+                    <Icon icon-name="calendar" />
                   </span>
               </div>
             </div>
@@ -46,12 +47,7 @@
             </div>
             <div class="col-md-3">
               <label class="form-label">&nbsp;</label>
-              <button class="btn btn-info ml-auto" @click="onSearch">
-                <i class="la la-search mr-1"></i> Search
-              </button>
-              <button class="btn btn-warning ml-auto" @click="onReset">
-                <i class="la la-refresh mr-1"></i> Reset
-              </button>
+              <FilterActions @search="onSearch()" @reset="onReset()" />
             </div>
           </div>
         </div>
@@ -60,6 +56,7 @@
           <table class="table card-table table-vcenter">
             <thead>
             <tr>
+              <th>User</th>
               <th>Location From</th>
               <th>Destination</th>
               <th>Date</th>
@@ -71,6 +68,10 @@
             </thead>
             <tbody>
             <tr v-for="application in applications">
+              <td>
+                {{application.user.name}}
+                <div class="text-muted text-h5">{{application.user.phone}}</div>
+              </td>
               <td>{{application.from}}</td>
               <td>
                 <PassDestination :destination="application.destination" />
@@ -86,8 +87,8 @@
                 <Status :approved="application.approved" />
               </td>
               <td class="text-right">
-                <button class="btn btn-light btn-pill" @click="viewApplication(application)">
-                  <i class="la la-file-alt"></i>
+                <button class="btn btn-light btn-pill btn-action" @click="viewApplication(application)">
+                  <Icon icon-name="file" size="sm" />
                 </button>
               </td>
             </tr>
@@ -96,6 +97,7 @@
             </tr>
             </tbody>
           </table>
+
           <Pagination :total-rows="totalNumberOfApplications" @changePage="onChangePage" />
         </div>
       </div>
@@ -110,18 +112,20 @@
 </template>
 
 <script>
-  import Loader from '../../../components/common/loader';
+  import Loader from '../../../components/common/Loader';
   import { VueDatePicker } from '@mathieustan/vue-datepicker';
   import '@mathieustan/vue-datepicker/dist/vue-datepicker.min.css';
-  import Modal from '../../../components/common/modal';
-  import PassDetails from '../../../components/pass/passDetails';
-  import Status from '../../../components/common/status';
+  import Modal from '../../../components/common/Modal';
+  import PassDetails from '../../../components/pass/PassDetails';
+  import Status from '../../../components/common/Status';
   import { MOVEMENT_TYPES, DATE_FORMAT, PASS_STATUSES } from '../../../utils';
-  import Pagination from '../../../components/common/pagination';
-  import PassStatusActions from '../../../components/pass/passStatusActions';
-  import PassDestination from '../../../components/pass/passDestination';
-  import PassDuration from "../../../components/pass/passDuration";
+  import Pagination from '../../../components/common/Pagination';
+  import PassStatusActions from '../../../components/pass/PassStatusActions';
+  import PassDestination from '../../../components/pass/PassDestination';
+  import PassDuration from "../../../components/pass/PassDuration";
   import ApplicationService from "../../../services/ApplicationService";
+  import Icon from '../../../components/common/Icon';
+  import FilterActions from '../../../components/common/FilterActions';
 
   export default {
     middleware: 'authAdmin',
@@ -135,7 +139,9 @@
       Modal,
       PassDetails,
       Status,
-      Pagination
+      Pagination,
+      Icon,
+      FilterActions
     },
     head() {
       return {
@@ -173,7 +179,7 @@
 
         ApplicationService.loadAll({
           ...this.queryParams,
-          page: this.pageNo
+          page: this.pageNo,
         }).then(response => {
           this.applications = response.data;
           this.totalNumberOfApplications = response.total;

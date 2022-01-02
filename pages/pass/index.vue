@@ -4,10 +4,11 @@
       <div class="card">
         <div class="card-header d-flex">
           <h3 class="card-title">
-            <i class="las la-id-card la-lg mr-1"></i> {{pageTitle}}
+            <Icon icon-name="card" />
+            {{pageTitle}}
           </h3>
           <nuxt-link to="/pass/apply" class="btn btn-info ml-auto">
-            <i class="la la-plus-circle la-lg mr-2"></i> Apply New Pass
+            Apply New Pass
           </nuxt-link>
         </div>
         <div class="table-responsive">
@@ -41,12 +42,12 @@
                 <Status :approved="pass.approved" />
               </td>
               <td class="text-right">
-                <button class="btn btn-light btn-pill" @click="viewPass(pass)">
-                  <i class="la la-file-alt"></i>
+                <button class="btn btn-light btn-pill btn-action" @click="viewPass(pass)">
+                  <Icon icon-name="file" />
                 </button>
               </td>
             </tr>
-            <tr v-if="totalNumberOfPasses === 0">
+            <tr v-if="!isLoading && totalNumberOfPasses === 0">
               <td colspan="7" class="text-center">No records found.</td>
             </tr>
             </tbody>
@@ -66,15 +67,16 @@
 </template>
 
 <script>
-  import Loader from '../../components/common/loader';
-  import Modal from '../../components/common/modal';
-  import PassDetails from '../../components/pass/passDetails';
-  import Status from '../../components/common/status';
-  import PassPdf from '../../components/pass/passPdf';
+  import Loader from '../../components/common/Loader';
+  import Modal from '../../components/common/Modal';
+  import Icon from '../../components/common/Icon';
+  import PassDetails from '../../components/pass/PassDetails';
+  import Status from '../../components/common/Status';
+  import PassPdf from '../../components/pass/PassPdf';
   import { MOVEMENT_TYPES, DATE_FORMAT } from '../../utils';
-  import Pagination from '../../components/common/pagination';
-  import PassDuration from '../../components/pass/passDuration';
-  import PassDestination from '../../components/pass/passDestination';
+  import Pagination from '../../components/common/Pagination';
+  import PassDuration from '../../components/pass/PassDuration';
+  import PassDestination from '../../components/pass/PassDestination';
   import PassService from '../../services/PassService';
 
   export default {
@@ -85,6 +87,7 @@
       PassDuration,
       Loader,
       Modal,
+      Icon,
       PassDetails,
       Status,
       PassPdf,

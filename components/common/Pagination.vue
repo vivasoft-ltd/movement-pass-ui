@@ -6,9 +6,14 @@
     :click-handler="changePage"
     :force-page="pageNo"
     :prev-text="'Prev'"
+    :prev-class="'page-item'"
+    :prev-link-class="'page-link'"
     :next-text="'Next'"
-    :container-class="'pagination'"
-    :page-class="'page-item'">
+    :next-class="'page-item'"
+    :next-link-class="'page-link'"
+    :container-class="'pagination m-3 ml-auto'"
+    :page-class="'page-item'"
+    :page-link-class="'page-link'">
   </paginate>
 </template>
 

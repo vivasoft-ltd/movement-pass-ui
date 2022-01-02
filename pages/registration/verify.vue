@@ -7,12 +7,12 @@
       <div class="card mt-4">
         <div class="card-header">
           <h2 class="card-title">
-            <i class="la la-user la-lg mr-1"></i> User Verification
+            {{pageTitle}}
           </h2>
         </div>
         <div class="card-body">
           <form @submit.prevent="submit">
-            <div class="row">
+            <div class="row mb-4">
               <div class="form-group col-md-6">
                 <label class="form-label required">Verification Code</label>
                 <input type="text"
@@ -41,11 +41,11 @@
 
 <script>
   import ValidationHelper from '../../helpers/ValidationHelper';
-  import ValidationError from '../../components/common/validationError';
+  import ValidationError from '../../components/common/ValidationError';
   import AuthService from '../../services/AuthService';
   import MessageHelper from '../../helpers/MessageHelper';
   import { MESSAGE_TYPES, MESSAGES } from '../../utils';
-  import Logo from '../../components/common/logo';
+  import Logo from '../../components/common/Logo';
 
   export default {
     middleware: 'guest',
@@ -53,8 +53,14 @@
       ValidationError,
       Logo
     },
+    head() {
+      return {
+        title: this.pageTitle
+      }
+    },
     data() {
       return {
+        pageTitle: 'User Verification',
         isVerifying: false,
         formData: {
           phone: localStorage.getItem('userPhone'),

@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import Avatar from '../components/common/avatar';
+  import Avatar from '../components/common/Avatar';
 
   export default {
     components: {
