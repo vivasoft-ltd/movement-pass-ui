@@ -2,24 +2,26 @@
   <div class="container">
     <div class="row text-center align-items-center">
       <div class="col-12 col-lg-auto mt-3 mt-lg-0">
-        Copyright © 2021
-        <a href="https://vivasoftltd.com" target="_blank">Vivasoft Limited</a>.
-        All rights reserved.
+        Developed by
+        <a :href="copyrightLink" target="_blank">
+          <img class="mt-0" src="~/static/favicon.png" height="18">
+          Vivasoft Limited
+        </a>
       </div>
       <div class="col-lg-auto ml-lg-auto">
         <ul class="list-inline mb-0">
           <li class="list-inline-item">
-            <a href="https://www.facebook.com/Vivasoft-Limited-256260524900071"
+            <a :href="socialLink.facebook"
                class="link-secondary"
                target="_blank">
-              <i class="lab la-facebook la-2x"></i>
+              <Icon class="text-primary" icon-name="facebook" size="lg" />
             </a>
           </li>
           <li class="list-inline-item">
-            <a href="https://www.linkedin.com/company/vivasoftlimited"
+            <a :href="socialLink.linkedin"
                class="link-secondary"
                target="_blank">
-              <i class="lab la-linkedin-in la-2x"></i>
+              <Icon class="text-azure" icon-name="linkedin" size="lg" />
             </a>
           </li>
         </ul>
@@ -29,6 +31,20 @@
 </template>
 
 <script>
+  import Icon from '../components/common/Icon';
+
   export default {
+    components: {
+      Icon
+    },
+    data() {
+      return {
+        copyrightLink: 'https://vivasoftltd.com',
+        socialLink: {
+          facebook: 'https://www.facebook.com/Vivasoft-Limited-256260524900071',
+          linkedin: 'https://www.linkedin.com/company/vivasoftlimited'
+        }
+      };
+    }
   }
 </script>

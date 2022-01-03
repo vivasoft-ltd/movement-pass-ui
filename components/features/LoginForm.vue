@@ -1,22 +1,17 @@
 <template>
   <form @submit.prevent="userLogin">
-    <div class="form-group">
+    <div class="form-group mb-3">
       <label class="form-label">Mobile Number</label>
       <div class="input-group">
         <span class="input-group-text">+880</span>
         <input type="text" class="form-control" v-model="phone" placeholder="1xxxxxxxxx">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group mb-3">
       <label class="form-label">Password</label>
-      <div class="input-group">
-              <span class="input-group-text">
-                <i class="la la-key la-lg ml-2 mr-1"></i>
-              </span>
-        <input type="password" class="form-control" v-model="password" placeholder="Password">
-      </div>
+      <input type="password" class="form-control" v-model="password" placeholder="Password">
     </div>
-    <div class="mb-3">
+    <div class="mt-3 mb-3">
       <button class="btn btn-info btn-block"
               :class="[isLogging ? 'btn-loading' : '']"
               :disabled="isLogging">
@@ -28,7 +23,7 @@
 
 <script>
   import MessageHelper from '../../helpers/MessageHelper';
-  import { MESSAGES, MESSAGE_TYPES } from '../../utils';
+  import { MESSAGES, MESSAGE_TYPES, FORMAT_PHONE_NUMBER } from '../../utils';
   import ValidationHelper from '../../helpers/ValidationHelper';
 
   export default {
@@ -50,7 +45,7 @@
 
         if (!this.$v.$invalid) {
           const loginData = {
-            phone: '0' + this.phone,
+            phone: FORMAT_PHONE_NUMBER(this.phone),
             password: this.password
           };
 
@@ -63,7 +58,7 @@
       }
     },
     watch: {
-      logging: function(newVal, oldVal) {
+      logging: function(newVal) {
         this.isLogging = newVal;
       }
     }

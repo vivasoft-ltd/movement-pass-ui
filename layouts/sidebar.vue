@@ -4,30 +4,35 @@
         <Avatar size="xl" />
         <h3 class="mt-2">{{$auth.user.name}}</h3>
       </div>
-      <div class="mt-3 menu">
+      <div class="mt-3 menu sidebar">
         <nuxt-link class="btn btn-block btn-light"
                    v-bind:class="{active: isActiveMenu('profile')}"
                    to="/profile">
-          <i class="la la-user la-lg mr-2"></i> Profile
+          <Icon icon-name="user" class="mr-1" />
+          Profile
         </nuxt-link>
         <nuxt-link class="btn btn-block btn-light"
                    v-bind:class="{active: isActiveMenu('pass')}"
                    to="/pass">
-          <i class="la la-id-card la-lg mr-2"></i> Passes
+          <Icon icon-name="card" class="mr-1" />
+          Passes
         </nuxt-link>
         <button class="btn btn-block btn-light" @click="logout">
-          <i class="la la-sign-out la-lg mr-2"></i> Logout
+          <Icon icon-name="logout" class="mr-1" />
+          Logout
         </button>
       </div>
     </div>
 </template>
 
 <script>
-  import Avatar from '../components/common/avatar';
+  import Avatar from '../components/common/Avatar';
+  import Icon from '../components/common/Icon';
 
   export default {
     components: {
-      Avatar
+      Avatar,
+      Icon
     },
     methods: {
       async logout() {

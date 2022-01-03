@@ -6,14 +6,12 @@
     <div class="col-md-8">
       <div class="card mt-4">
         <div class="card-header">
-          <h2 class="card-title">
-            <i class="la la-user-plus la-lg mr-1"></i> {{pageTitle}}
-          </h2>
+          <h2 class="card-title">{{pageTitle}}</h2>
         </div>
         <div class="card-body">
           <form @submit.prevent="submit" enctype="multipart/form-data">
             <div class="row">
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Name</label>
                 <input type="text"
                        class="form-control"
@@ -22,7 +20,7 @@
                        placeholder="Enter your name">
                 <validation-error v-if="$v.user.name.$error" :model-name="$v.user.name" field-name="name" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Mobile Number</label>
                 <div class="input-group">
                   <span class="input-group-text">+880</span>
@@ -37,7 +35,7 @@
                 <validation-error v-if="$v.phone.$error" :model-name="$v.phone" field-name="mobile number" />
                 <div class="invalid-feedback" v-if="errors.hasOwnProperty('phone')">{{ errors.phone[0] }}</div>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Password</label>
                 <input type="password"
                        class="form-control"
@@ -46,7 +44,7 @@
                        placeholder="Password">
                 <validation-error v-if="$v.user.password.$error" :model-name="$v.user.password" field-name="password" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Retype Password</label>
                 <input type="password"
                        class="form-control"
@@ -55,7 +53,7 @@
                        placeholder="Retype Password">
                 <validation-error v-if="$v.user.retypePassword.$error" :model-name="$v.user.retypePassword" field-name="retype password" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Date of Birth</label>
                 <div class="input-icon">
                   <VueDatePicker class="form-control"
@@ -71,12 +69,12 @@
                                  no-header
                                  no-calendar-icon />
                   <span class="input-icon-addon">
-                    <i class="la la-calendar la-lg"></i>
+                    <Icon icon-name="calendar" />
                   </span>
                 </div>
                 <validation-error v-if="$v.user.birthdate.$error" :model-name="$v.user.birthdate" field-name="date of birth" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Gender</label>
                 <div class="mt-2">
                   <label class="form-check form-check-inline">
@@ -94,7 +92,7 @@
                 </div>
                 <validation-error v-if="$v.user.gender.$error" :model-name="$v.user.gender" field-name="gender" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Card Type</label>
                 <select class="form-select"
                         v-model="user.cardType"
@@ -104,7 +102,7 @@
                 </select>
                 <validation-error v-if="$v.user.cardType.$error" :model-name="$v.user.cardType" field-name="card type" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Card Number</label>
                 <input type="text"
                        class="form-control"
@@ -113,11 +111,12 @@
                        placeholder="Enter your card number">
                 <validation-error v-if="$v.user.cardNumber.$error" :model-name="$v.user.cardNumber" field-name="card number" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">District</label>
                 <v-select v-model="user.district"
                           :options="districts"
                           @input="selectDistrict"
+                          class="form-select"
                           :class="{'is-invalid' : $v.user.district.$error}"
                           label="name"
                           :clearable="false"
@@ -125,10 +124,11 @@
                 </v-select>
                 <validation-error v-if="$v.user.district.$error" :model-name="$v.user.district" field-name="district" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Upazilla</label>
                 <v-select v-model="user.upaZilla"
                           :options="upazillas"
+                          class="form-select"
                           :class="{'is-invalid' : $v.user.upaZilla.$error}"
                           label="name"
                           :clearable="false"
@@ -136,7 +136,7 @@
                 </v-select>
                 <validation-error v-if="$v.user.upaZilla.$error" :model-name="$v.user.upaZilla" field-name="upaZilla" />
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6 mb-3">
                 <label class="form-label required">Image</label>
                 <input type="file" ref="file" class="form-control" @change="selectImage()">
                 <div class="invalid-feedback" v-if="errors.hasOwnProperty('image')">{{ errors.image[0] }}</div>
@@ -155,12 +155,13 @@
 <script>
   import { VueDatePicker } from '@mathieustan/vue-datepicker';
   import '@mathieustan/vue-datepicker/dist/vue-datepicker.min.css';
-  import ValidationError from '../../components/common/validationError';
+  import ValidationError from '../../components/common/ValidationError';
   import { CARD_TYPES, FORMAT_PHONE_NUMBER } from '../../utils';
   import { DISTRICTS, UPAZILLAS } from '../../utils/locations';
   import ValidationHelper from '../../helpers/ValidationHelper';
   import AuthService from '../../services/AuthService';
-  import Logo from '../../components/common/logo';
+  import Logo from '../../components/common/Logo';
+  import Icon from '../../components/common/Icon';
 
   const GENDER = 'male';
   const MAX_DATE = '2005-12-31';
@@ -171,7 +172,8 @@
     components: {
       VueDatePicker,
       ValidationError,
-      Logo
+      Logo,
+      Icon
     },
     head() {
       return {

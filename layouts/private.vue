@@ -2,7 +2,7 @@
   <body class="antialiased">
     <div class="page">
       <header class="navbar navbar-expand-md navbar-dark">
-        <navbar />
+        <Navbar />
       </header>
       <div class="content">
         <div class="container-xl">

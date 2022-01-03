@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-6">
       <dl class="row">
         <dt class="col-5">Name</dt>
         <dd class="col-7">: {{user.name}}</dd>
@@ -16,8 +16,8 @@
         <dd class="col-7">: {{user.cardNumber}}</dd>
       </dl>
     </div>
-    <div class="col-md-6 text-right">
-      <Avatar size="xl" avatar-style="rounded"/>
+    <div class="col-6 text-right">
+      <Avatar :image="user.image" size="xl" avatar-style="rounded" />
     </div>
     <hr>
   </div>
@@ -25,7 +25,7 @@
 
 <script>
   import { CARD_TYPES, DATE_FORMAT } from '../../utils';
-  import Avatar from '../common/avatar';
+  import Avatar from '../common/Avatar';
 
   export default {
     components: {

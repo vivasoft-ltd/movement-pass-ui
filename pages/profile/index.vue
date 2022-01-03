@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import Profile from '../../components/features/profile';
+  import Profile from '../../components/features/Profile';
 
   export default {
     layout: 'private',

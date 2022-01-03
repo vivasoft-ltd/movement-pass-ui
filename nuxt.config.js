@@ -17,8 +17,7 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', type: 'text/css', href: 'https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
     ]
   },
 
@@ -34,8 +33,11 @@ export default {
     { src: '~/plugins/vuelidate'},
     { src: '~/plugins/vueToastNotification'},
     { src: '~/plugins/vueSelect'},
-    { src: '~/plugins/vueHtml2Pdf'},
   ],
+
+  env: {
+    imageSource: 'http://127.0.0.1:8820/'
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -47,10 +49,9 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    'nuxt-moment'
+    '@nuxtjs/dayjs'
   ],
 
   axios: {
@@ -97,6 +98,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCSS: true,
     loaders: {
       vue: {
         compiler: require('vue-template-babel-compiler')
